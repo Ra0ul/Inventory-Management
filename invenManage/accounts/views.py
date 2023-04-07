@@ -61,5 +61,8 @@ def sign_in(request):
 
     
 
-        return redirect(request, 'accounts/login.html')
+@login_required
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
 
