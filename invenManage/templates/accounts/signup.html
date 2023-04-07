@@ -26,19 +26,10 @@
         <hr>
         <div style="float: right">
           <button type="submit" class="btn btn-primary">회원가입</button>
-          <a href="/sign-in" class="btn btn-secondary">로그인 페이지로</a>
+          <a href="/sign-in/" class="btn btn-secondary">로그인 페이지로</a>
         </div>
       </form>
 
     </div>
   </div>
 {% endblock %}
-
-<!-- form으로 만들어보려고 했지만 대실패 -->
-
-<!-- {% extends 'base.html' %} {% block content %} {% comment %} {% load crispy_forms_tags %} {% endcomment %} -->
-
-<!--Register-->
-<!-- <div class="container py-5"> <h1>Register</h1> <form method="POST"> {% csrf_token %} {% comment %} {{ register_form|crispy }} {% endcomment %} <button class="btn btn-primary" type="submit">등록</button> </form> <p class="text-center">계정이 있으시다면, <a href="/login">로그인</a> 해주세요.</p> </div> -->
-
-<!-- {% endblock %} -->

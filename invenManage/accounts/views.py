@@ -10,9 +10,9 @@ def sign_up(request):
     if request.method == 'GET':
         return render(request, 'accounts/signup.html')
     elif request.method == 'POST':
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
-        password2 = request.POST.get('password2', '')
+        username = request.POST.get('username', 'None')
+        password = request.POST.get('password', 'None')
+        password2 = request.POST.get('password2', 'None')
         
         if password != password2:
             print("비밀번호가 다릅니다.")
@@ -36,12 +36,30 @@ def sign_up(request):
     #         return render(request, 'accounts/signup.html')
         
 
-# def sign_in_view(request):
-#     if request.method == 'GET':
-#         account_obj = Account.objects.get(id=2)
-#         account_name = account_obj.name
-#         account_content = account_obj.content
+def sign_in(request):
+    if request.method == 'GET':
+        user = request.user.is_authenticated
+        if user:
+            return redirect('/')
+        else:
+            return render(request, 'accounts/login.html')
+    elif request.method == 'POST':
         
-#         return render(request, 'accounts/login.html')
+        #아이디와 비밀번호가 맞으면 기본 페이지 inventory.html로
+        #아니면 다시 로그인
+        
+        username = request.POST.get('username',None)
+        password = request.POST.get('password',None)
 
-# Create your views here.
+        me = auth.authenticate(request, username=username, password=password)
+
+        if me is not None:
+            auth.login(request, me)
+            return redirect('/')
+        else:
+            return redirect('/sign-in')
+
+    
+
+        return redirect(request, 'accounts/login.html')
+

@@ -10,4 +10,4 @@ def home_view(request):
 
 
 def home(request):
-    return render(request, 'base.html')
+    return render(request, 'erp/inventory.html')
